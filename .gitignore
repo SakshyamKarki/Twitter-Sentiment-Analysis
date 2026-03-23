@@ -1,0 +1,39 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.swp
+*.egg-info/
+*.egg
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+
+# Virtual environment
+venv/
+env/
+.venv/
+.env/
+
+# Data files
+data/*.zip
+data/glove*.txt
+
+# Trained models
+models/*/*.safetensors
+
+# Logs and temporary files
+logs/
+*.log
+
+# Streamlit temp files
+.streamlit/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Backup files
+*.bak
+*.tmp
