@@ -1,4 +1,4 @@
-import streamlit as st
+import app as st
 import joblib
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing.sequence import pad_sequences
