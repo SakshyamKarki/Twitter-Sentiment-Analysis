@@ -1,4 +1,4 @@
-import app as st
+import streamlit as st
 import joblib
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing.sequence import pad_sequences
@@ -14,7 +14,8 @@ st.title("Sentiment Analysis System")
 # =========================
 
 # Classical ML
-lr_model = joblib.load("models/linear_regression.pkl")
+svm_model = joblib.load("models/svm_model.pkl")
+lr_model = joblib.load("models/logistic_regression.pkl")
 vectorizer = joblib.load("models/tfidf_vectorizer.pkl")
 
 # RNN & LSTM
@@ -37,6 +38,10 @@ labels = ['Negative', 'Neutral', 'Positive']
 # =========================
 # 2. Prediction Functions
 # =========================
+def predict_svm(text):
+    X = vectorizer.transform([text])
+    return labels[svm_model.predict(X)[0]]
+
 def predict_lr(text):
     X = vectorizer.transform([text])
     return labels[lr_model.predict(X)[0]]
@@ -70,6 +75,7 @@ if st.button("Predict Sentiment"):
         st.warning("Please enter some text to analyze.")
     else:
         with st.spinner("Predicting..."):
+            st.write("SVM:", predict_svm(text_input))
             st.write("Logistic Regression:", predict_lr(text_input))
             st.write("RNN:", predict_rnn(text_input))
             st.write("LSTM:", predict_lstm(text_input))
